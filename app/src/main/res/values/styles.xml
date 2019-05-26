@@ -1,0 +1,25 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <!--<item name="actionBarTabTextStyle">@color/colorAccent</item>-->
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="actionBarTabTextStyle">@font/roboto_regular</item>
+        <!--<item name="android:titleTextStyle">@font/roboto_regular</item>-->
+        <item name="android:textViewStyle">@font/roboto_regular</item>
+        <!--<item name="actionMenuTextColor">@color/colorAccent</item>-->
+        <!--<item name="actionMenuTextColor">@color/colorAccent</item>-->
+        <!--<item name="android:actionMenuTextColor">@color/colorAccent</item>-->
+        <!--<item name="colorButtonNormal">@color/colorAccent</item>-->
+        <!--<item name="android:textColorSecondary">@color/colorAccent</item>-->
+    </style>
+    <style name="text" parent="android:Theme.Holo.Light">
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+</resources>
