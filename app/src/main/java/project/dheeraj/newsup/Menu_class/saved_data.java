@@ -1,6 +1,8 @@
 package project.dheeraj.newsup.Menu_class;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import java.util.ArrayList;
@@ -15,6 +17,8 @@ import project.dheeraj.newsup.LayoutItem;
 import project.dheeraj.newsup.MainActivity;
 import project.dheeraj.newsup.R;
 
+import static android.os.Build.ID;
+
 public class saved_data extends AppCompatActivity {
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -24,7 +28,11 @@ public class saved_data extends AppCompatActivity {
 
     private Context context = this;
 
-//    private DatabaseHelper mDatabseHelper;
+    private DatabaseHelper mDatabseHelper;
+    private Cursor cursor;
+
+    private ArrayList<LayoutItem> layoutItems = new ArrayList<>();
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,18 +42,27 @@ public class saved_data extends AppCompatActivity {
         mSwipeRefreshLayout = findViewById(R.id.swipe_container_savedData);
         mRecyclerView = findViewById(R.id.recyclerview_savedData);
 
-//        mDatabseHelper = new DatabaseHelper(context);
+        mDatabseHelper = new DatabaseHelper(saved_data.this);
+        
+//        mDatabseHelper.showData();
 
-        ArrayList<LayoutItem> layoutItems = new ArrayList<>();
+//
+
+//
+//
+//        for (int i=0; i<layoutItems.size(); i++) {
+//        layoutItems.add(new LayoutItem(null,"title","description","content","null"));
+//            mSwipeRefreshLayout.setRefreshing(false);
+//        }
+
+//        SQLiteDatabase db = DatabaseHelper.getReadableDatabse();
+//        layoutItems.add(mDatabseHelper.showData());
 
 
-        for (int i=0; i<layoutItems.size(); i++) {
-//        layoutItems.add(new LayoutItem(articlesArrayList.get(i).getUrlToImage(), articlesArrayList.get(i).getTitle(), articlesArrayList.get(i).getDescription(), articlesArrayList.get(i).getContent(), articlesArrayList.get(i).getUrlToImage()));
-            mSwipeRefreshLayout.setRefreshing(false);
-        }
+//        layoutItems.add(new LayoutItem(null,"title","description","content","null"));
 
-
-        layoutManager = new LinearLayoutManager(context);
+//        showData();
+        layoutManager = new LinearLayoutManager(saved_data.this);
         mAdapter = new Adapter(layoutItems, saved_data.this);
 
         mRecyclerView.setLayoutManager(layoutManager);
@@ -53,4 +70,23 @@ public class saved_data extends AppCompatActivity {
 
 
     }
+
+    public void showData(){
+
+        SQLiteDatabase db = mDatabseHelper.getWritableDatabase();
+        Cursor cursor = mDatabseHelper.getData(db);
+
+        String id,item01,item02,item03;
+
+
+        while(cursor.moveToFirst()){
+          //  id = cursor.getString(cursor.getColumnIndex(ID));
+            item01 = cursor.getString(1);
+            item02 = cursor.getString(2);
+            item03 = cursor.getString(3);
+
+            layoutItems.add(new LayoutItem(null,item01,item02,item03,null));
+        }
+    }
+
 }

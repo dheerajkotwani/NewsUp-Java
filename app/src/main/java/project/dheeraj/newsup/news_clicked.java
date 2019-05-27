@@ -96,11 +96,6 @@ public class news_clicked extends AppCompatActivity {
                     Toast.makeText(news_clicked.this,"Data Succesfully Added",Toast.LENGTH_SHORT).show();
                 }
                 else Toast.makeText(news_clicked.this,"Something went Wrong",Toast.LENGTH_SHORT).show();
-
-
-
-
-
             }
         });
         buttonFav.setOnClickListener(new View.OnClickListener() {

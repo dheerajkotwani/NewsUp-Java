@@ -23,6 +23,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import project.dheeraj.newsup.Api.JsonPplaceHolderApi;
+import project.dheeraj.newsup.Menu_class.menu_about;
+import project.dheeraj.newsup.Menu_class.menu_settings;
 import project.dheeraj.newsup.Menu_class.saved_data;
 import project.dheeraj.newsup.Model.Articles.articles;
 import project.dheeraj.newsup.Model.Feed;
@@ -240,12 +242,19 @@ public class MainActivity extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item){
         switch(item.getItemId()) {
             case R.id.saved:
-                Toast.makeText(context, "Saved response", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, saved_data.class);
-                startActivity(intent);
+                Toast.makeText(context, "Opening Saved Data", Toast.LENGTH_SHORT).show();
+                Intent intent1 = new Intent(MainActivity.this, saved_data.class);
+                startActivity(intent1);
                 break;
             case R.id.about:
-                // another startActivity, this is for item with id "menu_item2"
+                Toast.makeText(context, "Opening About", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(MainActivity.this, menu_about.class);
+                startActivity(intent2);
+                break;
+            case R.id.settings:
+                Toast.makeText(context, "Opening Settings", Toast.LENGTH_SHORT).show();
+                Intent intent3 = new Intent(MainActivity.this, menu_settings.class);
+                startActivity(intent3);
                 break;
             default:
                 Toast.makeText(context, "No response", Toast.LENGTH_LONG).show();
