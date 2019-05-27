@@ -2,6 +2,7 @@ package project.dheeraj.newsup;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,6 +46,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         public TextView description;
         public TextView content;
         public TextView imageId;
+        public ImageView back_color;
 
         OnItemClickListner onNoteClickListner;
 
@@ -56,12 +59,18 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             description = itemView.findViewById(R.id.newsDescription);
             content = itemView.findViewById(R.id.newsContent);
             imageId = itemView.findViewById(R.id.imgId);
+            back_color = itemView.findViewById(R.id.back_color);
+
+            Random rand = new Random();
+            int[] random ={R.color.blue,R.color.red,R.color.colorAccent,R.color.green,R.color.yellow};
+
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    Toast.makeText(context,"Hello\t"+position,Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,"Loading",Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent(context, news_clicked.class);
                     intent.putExtra("title",title.getText());
@@ -102,6 +111,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
 
+        Random rnd = new Random();
+        int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+        holder.back_color.setBackgroundColor(color);
+
 
         LayoutItem currentItem = layoutItems.get(i);
 //        holder.imageView.setImageResource(currentItem.getNewsImage());
@@ -112,6 +125,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         Picasso.with(context)
                 .load(currentItem.getNewsImage())
                 .into(holder.imageView);
+//        holder.back_color.setBackgroundColor();
 
     }
 
@@ -119,6 +133,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     public int getItemCount() {
         return layoutItems.size();
     }
+
 
 
 

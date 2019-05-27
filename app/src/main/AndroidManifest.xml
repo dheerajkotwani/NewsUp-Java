@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".saved_data"></activity>
+        <activity android:name=".Menu_class.saved_data"></activity>
         <activity android:name=".news_clicked" />
         <activity android:name=".MainActivity" />
         <activity
