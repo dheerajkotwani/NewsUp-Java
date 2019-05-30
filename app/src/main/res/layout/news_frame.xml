@@ -3,10 +3,14 @@
     android:id="@+id/newsFrame"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
+    android:layout_marginLeft="2dp"
+    android:layout_marginRight="2dp"
+    android:layout_marginBottom="4dp"
+    android:layout_marginTop="2dp"
     android:background="@drawable/border"
     android:orientation="vertical"
-    android:padding="1dp">
+    android:padding="1dp"
+    android:elevation="4dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -44,14 +48,15 @@
             android:text="Title"
             android:lines="2"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
-        <ImageView
+        <LinearLayout
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:alpha="0.25"
-            android:src="@color/black" />
+            android:background="@color/black" >
 
         <TextView
             android:id="@+id/newsDescription"
@@ -59,12 +64,13 @@
             android:layout_height="wrap_content"
             android:layout_above="@id/newsContent"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/roboto_light"
             android:text="Description"
             android:lines="3"
+            android:textStyle="bold"
             android:textColor="@color/white"
-            android:textSize="22sp" />
+            android:textSize="19sp" />
 
         <TextView
             android:id="@+id/newsContent"
@@ -73,12 +79,14 @@
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="2dp"
+            android:layout_marginBottom="4dp"
             android:fontFamily="@font/roboto_light"
             android:text="Content"
             android:lines="1"
+            android:textStyle="bold"
             android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:textSize="16sp" />
+        </LinearLayout>>
 
     </RelativeLayout>
 

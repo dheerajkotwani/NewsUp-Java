@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity{
         mButton = findViewById(R.id.button);
 
         mSwipeLayout = findViewById(R.id.swipe_container);
-        mSwipeLayout.setColorSchemeResources(R.color.red, R.color.green, R.color.blue);
+        mSwipeLayout.setColorSchemeResources(R.color.red, R.color.blue, R.color.yellow, R.color.green);
 
 //       saved = findViewById(R.id.saved);
 //       saved.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
@@ -110,11 +110,6 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-
-
-
-
-
     }
 
 
@@ -122,6 +117,8 @@ public class MainActivity extends AppCompatActivity{
         private void Refresh(){
 
         mSwipeLayout.setRefreshing(true);
+
+
 //Using Retrofit Declaration
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(baseUrl)
@@ -131,7 +128,6 @@ public class MainActivity extends AppCompatActivity{
 //Using Json Api Call
             JsonPplaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPplaceHolderApi.class);
             Call<Feed> call = jsonPlaceHolderApi.getData();
-//        Call<Feed> call = jsonPlaceHolderApi.getData();
 
 
             call.enqueue(new Callback<Feed>() {
@@ -149,21 +145,14 @@ public class MainActivity extends AppCompatActivity{
 
                     for (int i = 0; i < articlesArrayList.size(); i++) {
 
-//                    String imageView;
                         String content = "";
                         content += "Title: " + articlesArrayList.get(i).getTitle() + "\n";
                         content += "Description: " + articlesArrayList.get(i).getDescription() + "\n";
                         content += "Content: " + articlesArrayList.get(i).getContent() + "\n\n";
 
-
-
-
                         layoutItems.add(new LayoutItem(articlesArrayList.get(i).getUrlToImage(), articlesArrayList.get(i).getTitle(), articlesArrayList.get(i).getDescription(), articlesArrayList.get(i).getContent(), articlesArrayList.get(i).getUrlToImage()));
                         mSwipeLayout.setRefreshing(false);
                         // text.append(content);
-
-
-
                     }
 //Sending Data to Recycler View
                     final int position = 0;
@@ -183,8 +172,6 @@ public class MainActivity extends AppCompatActivity{
                             startActivity(intent);
                         }
                     });
-
-
                 }
 
                 @Override
@@ -194,44 +181,8 @@ public class MainActivity extends AppCompatActivity{
             });
 
         }
-//
-//
-//
-//
-//
-//
-//
-//    @Override
-//    public void onPointerCaptureChanged(boolean hasCapture) {
-//
-//    }
-//
-//    @Override
-//    public void onItemClick(int position) {
-//    }
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.side_menu,menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionItemsSelected(MenuItem item) {
-//        switch(item.getItemId()) {
-//            case R.id.saved:
-//                Toast.makeText(context, "Saved response", Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(MainActivity.this, saved_data.class);
-//                startActivity(intent);
-//                break;
-//            case R.id.about:
-//                // another startActivity, this is for item with id "menu_item2"
-//                break;
-//            default:
-//                Toast.makeText(context, "No response", Toast.LENGTH_LONG).show();
-//        }
-//                return super.onOptionsItemSelected(item);
-//        }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
@@ -261,14 +212,5 @@ public class MainActivity extends AppCompatActivity{
         }
                 return super.onOptionsItemSelected(item);
     }
-
-
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//
-//    }
-
-
 
 }

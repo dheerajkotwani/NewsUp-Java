@@ -32,37 +32,19 @@ public class saved_data extends AppCompatActivity {
     private Cursor cursor;
 
     private ArrayList<LayoutItem> layoutItems = new ArrayList<>();
-    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_data);
 
-        mSwipeRefreshLayout = findViewById(R.id.swipe_container_savedData);
         mRecyclerView = findViewById(R.id.recyclerview_savedData);
 
-        mDatabseHelper = new DatabaseHelper(saved_data.this);
+        mDatabseHelper = new DatabaseHelper(this);
         
-//        mDatabseHelper.showData();
 
-//
-
-//
-//
-//        for (int i=0; i<layoutItems.size(); i++) {
-//        layoutItems.add(new LayoutItem(null,"title","description","content","null"));
-//            mSwipeRefreshLayout.setRefreshing(false);
-//        }
-
-//        SQLiteDatabase db = DatabaseHelper.getReadableDatabse();
-//        layoutItems.add(mDatabseHelper.showData());
-
-
-//        layoutItems.add(new LayoutItem(null,"title","description","content","null"));
-
-//        showData();
         layoutManager = new LinearLayoutManager(saved_data.this);
+        layoutItems = mDatabseHelper.showData();
         mAdapter = new Adapter(layoutItems, saved_data.this);
 
         mRecyclerView.setLayoutManager(layoutManager);
@@ -70,23 +52,4 @@ public class saved_data extends AppCompatActivity {
 
 
     }
-
-    public void showData(){
-
-        SQLiteDatabase db = mDatabseHelper.getWritableDatabase();
-        Cursor cursor = mDatabseHelper.getData(db);
-
-        String id,item01,item02,item03;
-
-
-        while(cursor.moveToFirst()){
-          //  id = cursor.getString(cursor.getColumnIndex(ID));
-            item01 = cursor.getString(1);
-            item02 = cursor.getString(2);
-            item03 = cursor.getString(3);
-
-            layoutItems.add(new LayoutItem(null,item01,item02,item03,null));
-        }
-    }
-
 }

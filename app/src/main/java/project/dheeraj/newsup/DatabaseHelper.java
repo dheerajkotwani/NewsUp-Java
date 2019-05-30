@@ -22,6 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String column2 = "TITLE";
     public static final String column3 = "DESCRIPTION";
     public static final String column4 = "CONTENT";
+    public static final String column5 = "IMAGE";
 
 
 
@@ -33,7 +34,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        String createTable = "CREATE TABLE "+ TABLE_NAME + "(ID INTEGER PRIMARY KEY AUTOINCREMENT,TITLE TEXT,DESCRIPTION TEXT,CONTENT TEXT)";
+        String createTable = "CREATE TABLE "+ TABLE_NAME + "(ID INTEGER PRIMARY KEY AUTOINCREMENT,TITLE TEXT,DESCRIPTION TEXT,CONTENT TEXT,IMAGE TEXT)";
         sqLiteDatabase.execSQL(createTable);
 
     }
@@ -44,13 +45,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public boolean addData(String item1,String item2,String item3) {
+    public boolean addData(String item1,String item2,String item3,String item4) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(column2, item1);
         contentValues.put(column3, item2);
 //        contentValues.put(column4,"hello");
         contentValues.put(column4, item3);
+        contentValues.put(column5, item4);
 
         Log.d(TAG, "addDATA : ADDING" + item1 + "\n" + item2 + "\n" + item3 + "\nto " + TABLE_NAME);
 
@@ -62,7 +64,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
         public Cursor getData(SQLiteDatabase db){
-           String[] projection = {column1,column2,column3,column4};
+           String[] projection = {column1,column2,column3,column4,column5};
            Cursor cursor = db.query(TABLE_NAME,projection,null,null,null,null,null);
            return cursor;
     }
@@ -71,18 +73,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = this.getData(db);
 
-        String id,item01,item02,item03;
+        String item01,item02,item03,item04;
 
         ArrayList<LayoutItem> layoutItems = new ArrayList<>();
 
-        while(cursor.moveToFirst()){
-            id = cursor.getString(cursor.getColumnIndex(ID));
+
+        while(cursor.moveToNext()){
             item01 = cursor.getString(cursor.getColumnIndex(column2));
             item02 = cursor.getString(cursor.getColumnIndex(column3));
             item03 = cursor.getString(cursor.getColumnIndex(column4));
-
-            layoutItems.add(new LayoutItem(null,item01,item02,item03,null));
+            item04 = cursor.getString(cursor.getColumnIndex(column5));
+            layoutItems.add(new LayoutItem(null,item01,item02,item03,item04));
         }
+
+        cursor.close();
         return layoutItems;
     }
 

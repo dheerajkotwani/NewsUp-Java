@@ -32,7 +32,7 @@ public class news_clicked extends AppCompatActivity {
 
     private TextView mtitle, mdescription, mcontent;
     private ImageView mimage;
-
+    private String imgRes;
     private Context context;
 
     private DatabaseHelper mDatabaseHelper;
@@ -61,7 +61,7 @@ public class news_clicked extends AppCompatActivity {
         mdescription.setText(intent.getStringExtra("description"));
         mcontent.setText(intent.getStringExtra("content"));
 
-        String imgRes= intent.getStringExtra("image");
+        imgRes= intent.getStringExtra("image");
 
         mDatabaseHelper = new DatabaseHelper(news_clicked.this);
 
@@ -86,7 +86,7 @@ public class news_clicked extends AppCompatActivity {
                 String descriptionData = mdescription.getText().toString();
                 String contentData = mcontent.getText().toString();
 
-                boolean insertData = mDatabaseHelper.addData(titleData,descriptionData, contentData);
+                boolean insertData = mDatabaseHelper.addData(titleData,descriptionData, contentData, imgRes);
 
                 Toast.makeText(news_clicked.this,"Marked Favourite",Toast.LENGTH_SHORT).show();
                 view.setVisibility(View.GONE);
@@ -140,7 +140,7 @@ public class news_clicked extends AppCompatActivity {
                 String descriptionData = mdescription.getText().toString();
                 String contentData = mcontent.getText().toString();
 
-                boolean insertData = mDatabaseHelper.addData(titleData,descriptionData, contentData);
+                boolean insertData = mDatabaseHelper.addData(titleData,descriptionData, contentData, imgRes);
 
                 Toast.makeText(news_clicked.this,"Marked Favourite",Toast.LENGTH_SHORT).show();
                 view.setVisibility(View.GONE);
